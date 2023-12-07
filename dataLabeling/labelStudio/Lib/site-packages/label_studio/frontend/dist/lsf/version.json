@@ -1,0 +1,6 @@
+{
+  "message": "fix: LEAP-419: Fix brush issues appeared after fixing zoom performance",
+  "commit": "afb0887a8bc4e2a246dff13c01c6296e74ebf84a",
+  "branch": "ls-release/1.10.0",
+  "date": "2023-11-30T00:02:00Z"
+}
