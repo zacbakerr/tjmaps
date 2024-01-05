@@ -30,6 +30,5 @@ def complete(request):
     args = { "client_id": CLIENT_ID, "client_secret": CLIENT_SECRET }
     token = oauth.refresh_token("https://ion.tjhsst.edu/oauth/token/", **args)
 
-
-  # return HttpResponse("Welcome to TJMaps, %s!" % json.loads(profile.content.decode())["short_name"])
+  print(json.loads(profile.content.decode()))
   return render(request, "kefilwe/home.html", {"name": json.loads(profile.content.decode())["short_name"]})
