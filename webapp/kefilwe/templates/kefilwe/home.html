@@ -28,10 +28,19 @@
   <body>
     <div id="container">
       <h1 id="header">Welcome {{ name }}</h1><br>
-      <img id ="map" src="{% static 'maze.jpeg' %}" alt="maze" width="500" height="500" style="border: 1px solid #000000;"/>
+      <!-- <img id ="map" src="{% static 'maze.jpeg' %}" alt="maze" width="500" height="500" style="border: 1px solid #000000;"/> -->
     </div>
 
-    <script src="https://docs.opencv.org/4.5.4/opencv.js" type="text/javascript"></script>
+    <py-config type="toml">
+      packages = [
+        "opencv-python",
+        "scikit-image"
+      ]
+    </py-config>
+    
+    <py-script src="{% static 'bfs.py' %}"></py-script>
+
+    <!-- <script src="https://docs.opencv.org/4.5.4/opencv.js" type="text/javascript"></script>
     <script type="text/javascript" onload>
       const map = document.getElementById("map");
 
@@ -140,7 +149,7 @@
 
       // add event listener to the script tag
       document.currentScript.addEventListener('load', () => {
-        const img = cv.imread(map);
+        // const img = cv.imread("map");
         const h = img.shape[0];
         const w = img.shape[1];
         display();
@@ -150,6 +159,29 @@
         // replace the image with the new image
         cv.imshow("map", img);
       });
-    </script>
+
+      cv['onRuntimeInitialized']=()=>{
+        const img = cv.imread("map");
+      };
+
+      document.getElementById("map").addEventListener("click", function() {
+        mouse_click_status = mouse_click_status + 1;
+        // get coordinates of the mouse click
+        var x = event.clientX;
+        var y = event.clientY;
+        // place point on the image
+        cv.rectangle(img, (x-rw, y-rw), (x+rw, y+rw), (0, 255, 255), -1);
+        // show new image in document.getElementById("map")
+        cv.imshow("map", img);
+        console.log("Mouse click status: " + mouse_click_status);
+        if (mouse_click_status == 2) {
+          bfs(start, end);
+          cv.imshow("map", img);
+          console.log("Path found");
+        }
+      });
+      
+
+    </script> -->
   </body>
 </html>
